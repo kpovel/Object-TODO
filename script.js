@@ -11,9 +11,10 @@ const list = {
 }
 
 function changeStatus(task, status) {
-    if (status in STATUSES && list[task]) {
+    if ([task] in list && [status] in STATUSES) {
         list[task] = status
     }
+    //todo
 }
 
 function addTask(task) {
@@ -25,26 +26,32 @@ function deleteTask(task) {
     delete list[task]
 }
 
-function showList(status) {
-    console.log(`${status}:`)
+function showList() {
     let counter = 0
-    for (let key in list) {
-        if (list[key] === status) {
-            console.log(` ${key}`)
-            counter++
+
+    for (let status in STATUSES) {
+        console.log(`${status}:`)
+        for (let task in list) {
+            if (list[task] === status) {
+                console.log(` ${task}`)
+                counter++
+            }
         }
-    }
-    if (counter === 0) {
-        console.log(' -')
+        if (counter === 0) {
+            console.log(' -')
+        }
     }
 }
 
 addTask('complete the check')
 addTask('implement "—"')
+addTask('remake showList')
+changeStatus('remake showList', STATUSES.InProgress)
 changeStatus('implement "—"', STATUSES.Done)
 changeStatus('complete the check', STATUSES.Done)
 deleteTask('make a bed')
+changeStatus('implement "—"', STATUSES.ToDo)
 
-showList(STATUSES.ToDo)
-showList(STATUSES.InProgress)
-showList(STATUSES.Done)
+showList()
+
+console.log(list)
