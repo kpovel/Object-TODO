@@ -5,7 +5,7 @@ const list = {
 }
 
 function changeStatus(task, status) {
-    if (status && list[task]){
+    if (status && list[task]) {
         list[task] = status
     }
 }
@@ -21,16 +21,21 @@ function deleteTask(task) {
 
 function showList(status) {
     console.log(`${status}:`)
+    let counter = 0
     for (let key in list) {
         if (list[key] === status) {
             console.log(` ${key}`)
+            counter++
         }
+    }
+    if (counter === 0) {
+        console.log(`-`)
     }
 }
 
 addTask('complete the check in the absence of status')
 addTask('implement "—"')
-changeStatus('implement "—"', 'In Progress')
+changeStatus('implement "—"', 'Done')
 deleteTask('make a bed')
 
 showList('To Do')
