@@ -11,10 +11,10 @@ const list = {
 }
 
 function changeStatus(task, status) {
-    if ([task] in list && [status] in STATUSES) {
-        list[task] = status
+    if (list[task] && STATUSES[status]) {
+        list[task] = STATUSES[status]
     }
-    //todo
+    //todoа
 }
 
 function addTask(task) {
@@ -32,7 +32,7 @@ function showList() {
     for (let status in STATUSES) {
         console.log(`${status}:`)
         for (let task in list) {
-            if (list[task] === status) {
+            if (list[task] === STATUSES[status]) {
                 console.log(` ${task}`)
                 counter++
             }
