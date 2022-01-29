@@ -11,10 +11,9 @@ const list = {
 }
 
 function changeStatus(task, status) {
-    if (list[task] && STATUSES[status]) {
+    if (task in list && status in STATUSES) {
         list[task] = STATUSES[status]
     }
-    //todoа
 }
 
 function addTask(task) {
@@ -46,11 +45,11 @@ function showList() {
 addTask('complete the check')
 addTask('implement "—"')
 addTask('remake showList')
-changeStatus('remake showList', STATUSES.InProgress)
-changeStatus('implement "—"', STATUSES.Done)
-changeStatus('complete the check', STATUSES.Done)
+changeStatus('remake showList', 'InProgress')
+changeStatus('implement "—"', 'Done')
+changeStatus('complete the check', 'Done')
 deleteTask('make a bed')
-changeStatus('implement "—"', STATUSES.ToDo)
+changeStatus('implement "—"', 'ToDo')
 
 showList()
 
