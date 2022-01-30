@@ -1,43 +1,47 @@
+const STATUSES = {
+    ToDo: 'To Do',
+    InProgress: 'In Progress',
+    Done: 'Done'
+}
+
 const list = {
-    'create a new practice task': 'In Progress',
-    'make a bed': 'Done',
-    'write a post': 'To Do'
-}
+    'create a new practice task': STATUSES.InProgress,
+    'make a bed': STATUSES.Done,
+    'write a post': STATUSES.ToDo,
 
-function changeStatus(task, status) {
-    if (status && list[task]) {
-        list[task] = status
-    }
-}
 
-function addTask(task) {
-    if (!task) return
-    list[task] = 'To Do'
-}
-
-function deleteTask(task) {
-    delete list[task]
-}
-
-function showList(status) {
-    console.log(`${status}:`)
-    let counter = 0
-    for (let key in list) {
-        if (list[key] === status) {
-            console.log(` ${key}`)
-            counter++
+    changeStatus(task, status) {
+        if (task in this) {
+            this[task] = status
         }
-    }
-    if (counter === 0) {
-        console.log(`-`)
+    },
+
+    addTask(task) {
+        this[task] = STATUSES.ToDo
+    },
+
+    deleteTask(task) {
+        delete this[task]
+    },
+
+    showList() {
+        let counter = 0
+
+        for (let status in STATUSES) {
+            console.log(`${status}:`)
+            for (let task in this) {
+                if (this[task] === STATUSES[status]) {
+                    console.log(` ${task}`)
+                    counter++
+                }
+            }
+            if (counter === 0) {
+                console.log(' -')
+            }
+        }
+        // todo: fixed '-'
     }
 }
 
-addTask('complete the check in the absence of status')
-addTask('implement "—"')
-changeStatus('implement "—"', 'Done')
-deleteTask('make a bed')
-
-showList('To Do')
-showList('In Progress')
-showList('Done')
+list.deleteTask('create a new practice task')
+list.showList()
