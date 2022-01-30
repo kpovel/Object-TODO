@@ -39,6 +39,7 @@ function showList() {
         if (counter === 0) {
             console.log(' -')
         }
+        counter = 0
     }
 }
 
