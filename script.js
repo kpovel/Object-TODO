@@ -38,8 +38,8 @@ const list = {
             if (counter === 0) {
                 console.log(' -')
             }
+        counter = 0
         }
-        // todo: fixed '-'
     }
 }
 
